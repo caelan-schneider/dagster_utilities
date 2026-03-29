@@ -57,7 +57,7 @@ class HolidayAwareSchedule(ScheduleDefinition):
             my_database_resource = context.resources.my_database_resource
             eval_date = context.scheduled_execution_time.date().isoformat()
             holiday = my_database_resource.execute(f"SELECT holiday FROM some_holiday_table WHERE date = {eval_date}")
-            return holiday is not None
+            return holiday is None
 
         kwargs["should_execute"] = should_execute
         kwargs["required_resource_keys"] = {"my_database_resource"} | kwargs.get("required_resource_keys", set())
